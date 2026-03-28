@@ -16,19 +16,38 @@ auction-server/
 
 
 auction-client/
-├── pom.xml (hoặc build.gradle)      <-- File cấu hình thư viện (JavaFX, thư viện vẽ biểu đồ)
 ├── src/
 │   ├── main/
 │   │   ├── java/
-│   │   │   └── com/auction/client/
-│   │   │       ├── ClientMain.java  <-- Khởi tạo ứng dụng JavaFX (kế thừa Application)
-│   │   │       ├── network/         <-- Lớp quản lý kết nối Socket Client/gọi REST API tới Server
-│   │   │       ├── controller/      <-- Chứa các JavaFX Controller (xử lý sự kiện click nút, nhập text)
-│   │   │       └── model/           <-- Các class hứng dữ liệu (JSON) trả về từ Server
-│   │   └── resources/
-│   │       ├── fxml/                <-- Chứa các file giao diện (.fxml) vẽ bằng SceneBuilder
-│   │       │   ├── LoginView.fxml
-│   │       │   ├── AuctionListView.fxml
-│   │       │   └── BiddingView.fxml
-│   │       ├── css/                 <-- File style (.css) để làm đẹp giao diện
-│   │       └── images/              <-- Hình ảnh minh họa (icon, ảnh sản phẩm mặc định)
+│   │   │   └── com/nhom15/client/
+│   │   │       ├── MainApplication.java       (Hàm main, khởi chạy JavaFX)
+│   │   │       │
+│   │   │       ├── controller/                (Chứa các JavaFX Controller xử lý logic giao diện)
+│   │   │       │   ├── LoginController.java
+│   │   │       │   ├── AuctionListController.java
+│   │   │       │   ├── BiddingRoomController.java (Màn hình đấu giá trực tiếp)
+│   │   │       │   └── SellerDashboardController.java (Quản lý sản phẩm cho Seller)
+│   │   │       │
+│   │   │       ├── model/                     (Chứa các Data Transfer Object - DTO nhận từ Server)
+│   │   │       │   ├── UserDTO.java
+│   │   │       │   ├── ItemDTO.java
+│   │   │       │   └── BidMessage.java        (Model cho bản tin realtime)
+│   │   │       │
+│   │   │       ├── network/                   (Chịu trách nhiệm giao tiếp mạng với Server)
+│   │   │       │   ├── ApiClient.java         (Gửi/nhận HTTP request bằng JSON)
+│   │   │       │   └── SocketClient.java      (Lắng nghe Socket cho realtime update/Observer)
+│   │   │       │
+│   │   │       └── util/                      (Các lớp tiện ích dùng chung)
+│   │   │           ├── SessionManager.java    (Lưu trạng thái User đang đăng nhập)
+│   │   │           └── ViewFactory.java       (Hỗ trợ load FXML và chuyển đổi giữa các màn hình)
+│   │   │
+│   │   └── resources/                         (Chứa các file tài nguyên tĩnh)
+│   │       ├── fxml/                          (Chứa file thiết kế giao diện)
+│   │       │   ├── login.fxml
+│   │       │   ├── auction_list.fxml
+│   │       │   ├── bidding_room.fxml
+│   │       │   └── seller_dashboard.fxml
+│   │       ├── css/                           (Tùy chỉnh giao diện đẹp hơn)
+│   │       │   └── styles.css
+│   │       └── assets/                        (Hình ảnh, icon...)
+│   │           └── logo.png
